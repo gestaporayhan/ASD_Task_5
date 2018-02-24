@@ -37,6 +37,42 @@ int main() {
     P = allocate(x);
     insertLast(L,P);
 
+     x.ID = index_ID++;
+    x.location = "asset";
+    x.name = "mi.wav";
+    P = allocate(x);
+    insertLast(L,P);
+
+     x.ID = index_ID++;
+    x.location = "asset";
+    x.name = "fa.wav";
+    P = allocate(x);
+    insertLast(L,P);
+
+     x.ID = index_ID++;
+    x.location = "asset";
+    x.name = "sol.wav";
+    P = allocate(x);
+    insertLast(L,P);
+
+     x.ID = index_ID++;
+    x.location = "asset";
+    x.name = "la.wav";
+    P = allocate(x);
+    insertLast(L,P);
+
+     x.ID = index_ID++;
+    x.location = "asset";
+    x.name = "si.wav";
+    P = allocate(x);
+    insertLast(L,P);
+
+     x.ID = index_ID++;
+    x.location = "asset";
+    x.name = "do.wav";
+    P = allocate(x);
+    insertLast(L,P);
+
     //-----------------------------------------
     // memanggil menu utama
     //-----------------------------------------
@@ -114,26 +150,40 @@ void runMenu(int menu) {
     case 2:
         // insert last music
         //-------------your code here-------------
-        cout<<"UNDER MAIN TENIS"<<endl;
+        P = inputMusic();
+        insertLast(L, P);
 
         //----------------------------------------
         cout<<"press enter";getche();
         break;
     case 3:
         // view music list
-        printInfo(L);
+        if(first(L)!= NULL){
+            printInfo(L);
+        }else{
+            cout<<"List Empty"<<endl;
+        }
         cout<<"press enter";getche();
         break;
     case 4:
         // play first music
-        P = first(L);
-        playMusic(P);
+        if(first(L)!= NULL){
+            P = first(L);
+            playMusic(P);
+        }else{
+            cout<<"List Empty"<<endl;
+        }
         break;
     case 5:
         // play last music
         //-------------your code here-------------
-        cout<<"UNDER MAIN TENIS"<<endl;
-
+        if(first(L)!= NULL){
+            P = last(L);
+            playMusic(P);
+        }else{
+            cout<<"List Empty"<<endl;
+        }
+        cout<<"Press Enter";getche();
         //----------------------------------------
         break;
     case 6:
@@ -144,6 +194,8 @@ void runMenu(int menu) {
         P = findElmByName(L, x);
         if(P != NULL){
             cout<<"music found"<<endl;
+        }else{
+            cout<<"Music not Found"<<endl;
         }
         //----------------------------------------
         cout<<"press enter";getche();
@@ -151,7 +203,14 @@ void runMenu(int menu) {
     case 7:
         // search music by ID
         //-------------your code here-------------
-        cout<<"UNDER MAIN TENIS"<<endl;
+        cout<<"Input ID Music"<<endl;
+        cin>>x.ID;
+        P = findElmByID(L, x);
+        if(P != NULL){
+            cout<<"Music Found"<<endl;
+        }else{
+            cout<<"Music not Found"<<endl;
+        }
 
         //----------------------------------------
         cout<<"press enter";getche();
@@ -161,6 +220,7 @@ void runMenu(int menu) {
         if(P!=NULL) {
             playMusic(P);
         }
+        cout<<"Press Enter";getche();
         break;
     case 9:
         // play next music
@@ -168,37 +228,58 @@ void runMenu(int menu) {
             P = next(P);
             playMusic(P);
         }
-        break;
+        cout<<"Press Enter";getche();
     case 10:
         // play previous music
         //-------------your code here-------------
-        cout<<"UNDER MAIN TENIS"<<endl;
+        if(P!= NULL){
+            P = prev(P);
+            playMusic(P);
+        }
+        cout<<"Press Enter";getche();
 
         //----------------------------------------
         break;
     case 11:
         // shuffle list
-        shuffleList(L);
+        if(first(L)!= NULL){
+            shuffleList(L);
+        }else{
+            cout<<"List Empty"<<endl;
+        }
         cout<<"press enter";getche();
         break;
     case 12:
         // sort list by ID
-        sortListByID(L);
+       if(first(L)!= NULL){
+            sortListByID(L);
+       }else{
+        cout<<"List Empty"<<endl;
+       }
         cout<<"press enter";getche();
         break;
     case 13:
         // play repeat all music
-        int n;
-        cout<<"input repeat times : ";
-        cin>>n;
-        playRepeat(L,n);
+        if(first(L)!= NULL){
+            int n;
+            cout<<"Input Repeat Times : ";
+            cin>>n;
+            playRepeat(L, n);
+        }else{
+            cout<<"List Empty"<<endl;
+        }
+
         cout<<"press enter";getche();
         break;
     case 14:
         // delete music by ID
-        cout<<"input music ID : ";
-        cin>>x.name;
-        deleteMusicByID(L, x);
+        if(first(L)!=NULL){
+            cout<<"Input Music ID : ";
+            cin>>x.ID;
+            deleteMusicByID(L, x);
+        }else{
+            cout<<"List Empty"<<endl;
+        }
         cout<<"press enter";getche();
         break;
     case 0:
